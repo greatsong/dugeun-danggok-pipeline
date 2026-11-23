@@ -84,7 +84,7 @@
     if (it.type === "trio") return head(it) + '<div class="triobox' + (it.anim ? ' anim' : '') + '">' + it.imgs.map(function (m, k) { return '<figure style="--i:' + k + '" data-lb="' + m[0] + '" data-cap="' + esc(m[1]) + '"><img src="' + m[0] + '" alt="' + esc(m[1]) + ' 꿈 보드(모의 학생)"><figcaption>' + esc(m[1]) + '</figcaption></figure>'; }).join("") + '</div>' + chips(it.chips);
     if (it.type === "embed3d") return head(it) + '<div class="e3"><div class="e3stage"><p class="e3cap">점 하나 = 직업 하나(미국 노동부 O*NET 923개, 색 = 직업군) · 노란 별 = 서윤 · 금빛 선 = 가장 가까운 직업 · ♥ Love끼리, ★ Well끼리 비교한 가까움(1에 가까울수록 비슷) · 점을 누르면 직업 이름 · 끌어서 회전 · 휠로 확대</p></div>' +
       '<div class="e3side"><div class="e3list"></div><div class="e3k"><span>가까운 직업</span>' + [3, 5, 10, 20].map(function (k) { return '<button data-k="' + k + '"' + (k === 5 ? ' class="on"' : '') + '>' + k + '개</button>'; }).join("") + '</div><div class="e3top"></div></div></div>' + chips(it.chips);
-    if (it.type === "pipe") return (it.head ? head(it) : "") + '<div class="pipebox" data-boxes="' + (it.boxes || []).join(" ") + '" data-arrows="' + (it.arrows || []).join(" ") + '"' + (it.all ? ' data-all="1"' : "") + '>' + (window.PIPE_SVG || "") + '</div>';
+    if (it.type === "pipe") return (it.head ? head(it) : "") + '<div class="pipebox" data-boxes="' + (it.boxes || []).join(" ") + '" data-arrows="' + (it.arrows || []).join(" ") + '"' + (it.all ? ' data-all="1"' : "") + (it.col ? ' data-col="' + it.col.join(" ") + '"' : "") + '>' + (window.PIPE_SVG || "").replace(/farr/g, "farr" + (window.__pn = (window.__pn || 0) + 1)) + '</div>';
     if (it.type === "native") return NATIVE[it.key];
     if (it.type === "chain") {
       var p = it.plan;
@@ -330,6 +330,10 @@ window.pipeFlow = function (box) {
   if (sp.getAnimations) sp.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); });
   sp.textContent = "";
   svg.classList.toggle("playing", !box.dataset.all);
+  svg.querySelectorAll(".colband").forEach(function (e) { e.remove(); });
+  if (box.dataset.col) { var cx = box.dataset.col.split(" ").map(Number), band = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    band.setAttribute("class", "colband"); band.setAttribute("x", cx[0] - 8); band.setAttribute("y", 12); band.setAttribute("width", cx[1] - cx[0] + 16); band.setAttribute("height", 400); band.setAttribute("rx", 14);
+    svg.insertBefore(band, svg.querySelector(".fl-h")); }
   svg.querySelectorAll(".pbox,.arw,.alab").forEach(function (e) { e.classList.toggle("on", boxes.indexOf(e.dataset.k) >= 0 || arrows.indexOf(e.dataset.k) >= 0); });
   var NS = "http://www.w3.org/2000/svg", rm = matchMedia("(prefers-reduced-motion: reduce)").matches, at = 400;
   arrows.forEach(function (k) {

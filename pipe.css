@@ -44,6 +44,7 @@
 .pipebox .pmap{display:block;height:100%;width:auto;max-width:100%;min-width:0}
 @keyframes pmflow{from{stroke-dashoffset:13.5}to{stroke-dashoffset:0}}
 .pipebox .fl-h{font-size:18px}
+.pipebox .colband{fill:#ffe9a8;opacity:.55}
 /* 파이프라인 덱: 제목 한두 줄, 항목이 많은 장은 목록을 촘촘하게 */
 .slide[data-menu] .top h2{font-size:42px;line-height:1.25}
 .slide[data-menu] .mwrap{height:800px;margin-top:16px}
