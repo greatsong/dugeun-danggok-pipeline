@@ -8,175 +8,48 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
 <style>
-/* 레이아웃: 큰 루프(나를 알고 → 꿈을 찾고 → 나아가고 → 더 나은 내가 되기)가 지도 테두리를 돌고, 그 안에 학생 · 선생님 · 두근두근 시스템 세 구역, 구역마다 작은 루프(단계가 보이는 노선)과 노선 사이 연결선. 휴대폰은 세로 카드. */
 :root{
-  --paper:#f6efe0; --card:#fffaf0; --ink:#2a2118; --sub:#5c4f40; --rule:#e2d4b8; --grid:#eee3cb;
-  --stu:#d63a50; --stu-bg:#fbe4da;
-  --tea:#13865a; --tea-bg:#e2eed0;
-  --sys:#5443c6; --sys-bg:#ebe3f4;
-  --sep:#6b5a48; --sep-bg:#f1e7d3;
-  --sea:#cfe9f3; --sea-deep:#a9d6e8; --shallow:#e4f5f8; --wave:#ffffff; --route:#c25e2a; --wood:#f6e7c8; --wood-ink:#7a4a24;
-  --big:#e59a00; --big-soft:#ffe7b0;
-  --hl:#fff3b0;
-  --ai:#0aa6d1; --ai-bg:#cdf3ff; --ai-card:#ffffff; --ai-ink:#06627d; --ai-sub:#2f6273;
+  --bg:#f5f6f8; --surface:#ffffff; --ink:#1d2129; --sub:#5b6270; --line:#e6e8ec; --soft:#f1f3f6; --accent:#5443c6; --hl:#ffe9a8;
   --f-display:'Jua','Noto Sans KR','Apple SD Gothic Neo',system-ui,sans-serif;
   --f-body:'Noto Sans KR','Apple SD Gothic Neo',system-ui,sans-serif;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --paper:#0e1220; --card:#171d30; --ink:#eef1fa; --sub:#aab3c8; --rule:#2a3350; --grid:#1a2136;
-  --stu:#ff7a8a; --stu-bg:#2c1820; --tea:#36c98a; --tea-bg:#112619; --sys:#9a86ff; --sys-bg:#1d1a3a; --sep:#a4acbb; --sep-bg:#1b2030; --sea:#12304a; --sea-deep:#0d2538; --shallow:#1a3d57; --wave:#2b5878; --route:#ff9a5c; --wood:#3a2c1c; --wood-ink:#f3d6a8; --big:#ffc23d; --big-soft:#3d3214;
-  --hl:#3b3413; --ai:#0aa6d1; --ai-bg:#bdefff; --ai-card:#f4fdff; --ai-ink:#06627d; --ai-sub:#2f6273; color-scheme:dark }}
-:root[data-theme="dark"]{
-  --paper:#0e1220; --card:#171d30; --ink:#eef1fa; --sub:#aab3c8; --rule:#2a3350; --grid:#1a2136;
-  --stu:#ff7a8a; --stu-bg:#2c1820; --tea:#36c98a; --tea-bg:#112619; --sys:#9a86ff; --sys-bg:#1d1a3a; --sep:#a4acbb; --sep-bg:#1b2030; --sea:#12304a; --sea-deep:#0d2538; --shallow:#1a3d57; --wave:#2b5878; --route:#ff9a5c; --wood:#3a2c1c; --wood-ink:#f3d6a8; --big:#ffc23d; --big-soft:#3d3214;
-  --hl:#3b3413; --ai:#0aa6d1; --ai-bg:#bdefff; --ai-card:#f4fdff; --ai-ink:#06627d; --ai-sub:#2f6273; color-scheme:dark }
-*{box-sizing:border-box}
-body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6;
-  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:28px 28px}
-.wrap{max-width:1320px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:18px 48px}
-header.top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:10px}
-.logo{width:40px;height:40px;position:relative}
-.logo i{position:absolute;width:22px;height:22px;border-radius:50%;border:4px solid}
-.logo i:nth-child(1){left:9px;top:0;border-color:var(--stu)} .logo i:nth-child(2){left:0;top:15px;border-color:var(--tea)} .logo i:nth-child(3){left:18px;top:15px;border-color:var(--sys)}
-.brand b{font-family:var(--f-display);font-size:22px;font-weight:400}
-.brand small{display:block;color:var(--sub);font-size:12px;margin-top:-4px}
-.who{display:flex;gap:4px;background:var(--card);border:1px solid var(--rule);border-radius:999px;padding:4px;align-items:center}
-.who button{font:inherit;font-size:13px;border:0;background:transparent;color:var(--sub);padding:7px 12px;border-radius:999px;cursor:pointer;min-height:36px}
-.who button[aria-pressed="true"]{background:var(--ink);color:var(--paper);font-weight:700}
-.who-l{font-size:12px;color:var(--sub);margin:0 4px 0 8px}
-.hero{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:end;margin:22px 0 14px}
-.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(27px,4vw,42px);line-height:1.18;margin:0;text-wrap:balance}
-.hero h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--hl) 0)}
-.hero p{margin:8px 0 0;color:var(--sub);max-width:64ch}
-.login{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
-.gbtn{display:inline-flex;align-items:center;gap:10px;font:inherit;font-weight:700;border:2px solid var(--ink);background:var(--card);color:var(--ink);border-radius:14px;padding:11px 18px;cursor:pointer;box-shadow:4px 4px 0 var(--ink);min-height:48px}
-.gbtn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
-.gbtn svg{width:20px;height:20px}
-.login small{color:var(--sub);font-size:12px}
-.me{display:none;align-items:center;gap:10px;background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:8px 14px}
-.me .av{width:32px;height:32px;border-radius:50%;color:#fff;display:grid;place-items:center;font-family:var(--f-display)}
-body.in .gbtn{display:none} body.in .me{display:flex}
-.quick{display:none;gap:8px;flex-wrap:wrap;margin:0 0 14px}
-body.in .quick{display:flex}
-.quick a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--rule);border-radius:999px;padding:8px 14px;font-weight:500;min-height:40px}
-.quick a i{width:12px;height:12px;border-radius:50%}
-.board{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;align-items:start}
-.mapbox{background:transparent;border:0;padding:0}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .mapbox{--card:#fffaf0;--ink:#2a2118;--sub:#5c4f40;--stu:#d63a50;--stu-bg:#fbe4da;--tea:#13865a;--tea-bg:#e2eed0;--sys:#5443c6;--sys-bg:#ebe3f4;--sep:#6b5a48;--sep-bg:#f1e7d3;--shallow:#e4f5f0;--route:#b0532a;--wood:#f6e7c8;--wood-ink:#7a4a24;--big:#d98a00;--big-soft:#ffe7b0;--hl:#fff3b0;--paper:#f6efe0}}
-:root[data-theme="dark"] .mapbox{--card:#fffaf0;--ink:#2a2118;--sub:#5c4f40;--stu:#d63a50;--stu-bg:#fbe4da;--tea:#13865a;--tea-bg:#e2eed0;--sys:#5443c6;--sys-bg:#ebe3f4;--sep:#6b5a48;--sep-bg:#f1e7d3;--shallow:#e4f5f0;--route:#b0532a;--wood:#f6e7c8;--wood-ink:#7a4a24;--big:#d98a00;--big-soft:#ffe7b0;--hl:#fff3b0;--paper:#f6efe0}
-.mapbox svg{display:block;width:100%;height:auto}
-/* 지도 요소 */
-.bigtrack{fill:none;stroke:#ffffff;stroke-width:28;opacity:.45}
-.bigline{fill:none;stroke:#b5442c;stroke-width:5;stroke-linecap:round}
-.link-l.big{stroke:#b5442c!important;stroke-width:5}
-.link-l.plan{stroke-dasharray:6 7;opacity:.7}
-.boat{fill:#fff8e6;stroke:#7a4a24;stroke-width:1.6}
-.badge rect{fill:#7a4a24} .badge text{fill:#fff8e6;font-size:11.5px;font-weight:700}
-.flag text{font-family:var(--f-display);font-size:14px;fill:#b5442c}
-.lt{fill:none;stroke-width:2.4;stroke-linejoin:round}
-.stage rect{fill:var(--wood);stroke:var(--wood-ink);stroke-width:3}
-.stage text{font-family:var(--f-display);font-size:19px;fill:var(--wood-ink)}
-.island-shoal{fill:#8fd0c9;opacity:.5}
-.island-halo{fill:#f7e7b4;stroke:#7a4a24;stroke-width:2.4;stroke-linejoin:round}
-.coast{fill:none;stroke-width:1.6;stroke-dasharray:3 6;opacity:.7}
-.island{stroke:#7a4a24!important;stroke-width:2;stroke-linejoin:round}
-.compass circle{fill:var(--wood);stroke:var(--wood-ink);stroke-width:2.5}
-.compass path{fill:var(--route)} .compass text{font-size:13px;font-weight:700;fill:var(--wood-ink)}
-.ship path{fill:var(--wood);stroke:var(--wood-ink);stroke-width:2}
-.port-l{font-family:var(--f-display);font-size:18px;fill:var(--wood-ink)}
-.zone rect.bg{stroke-width:2.5}
-.zone.sep .bg{stroke-dasharray:10 8}
-.sepnote{font-size:12.5px;fill:var(--sub)}
-.zname{font-family:var(--f-display);font-size:25px}
-.zsub{font-size:13px;fill:var(--sub)}
-.cell{cursor:pointer;transition:opacity .2s}
-.cell rect.box{fill:var(--card);stroke-width:2}
-.cell .ttl{font-family:var(--f-display);font-size:17.5px;fill:var(--ink)}
-.cell .app{font-size:11px;fill:var(--sub)}
-.cell .rail{fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
-.cell .dot{stroke-width:3.5}
-.cell .stp{font-size:13px;font-weight:500;fill:var(--ink)}
-.cell .stp.link{font-weight:700}
-.cell .chip{font-size:10.5px;font-weight:700}
-.cell:hover rect.box,.cell.sel rect.box{fill:var(--hl)}
-.cell:focus{outline:none} .cell:focus-visible rect.box{stroke-width:4}
-.link-l{fill:none;stroke-width:3;opacity:.8;transition:opacity .2s,stroke-width .2s}
-body.focus .link-l:not(.on){opacity:.18}
-
-.link-l.on{opacity:1;stroke-width:4.5}
-body.focus .cell:not(.sel):not(.rel) :is(text,.rail,.dot,path){opacity:.38}
-.hub rect{fill:var(--ink)} .hub text{fill:var(--paper);font-size:13px;font-weight:700}
-.channel{fill:#ffffff;opacity:.55;stroke:var(--wood-ink);stroke-width:2;stroke-dasharray:2 7}
-body.v-st .zone.tea,body.v-st .zone.sys{opacity:.55}
-body.v-te .zone.stu{opacity:.55}
-/* 패널 */
-.panel{background:var(--card);border:1px solid var(--rule);border-radius:22px;padding:18px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}
-.tag{display:inline-flex;font-size:12px;font-weight:700;color:#fff;border-radius:999px;padding:3px 10px}
-.panel h2{font-family:var(--f-display);font-weight:400;font-size:26px;margin:10px 0 2px;line-height:1.2}
-.panel .app{color:var(--sub);font-size:13px;margin:0 0 10px}
-.panel h3{font-size:13px;color:var(--sub);margin:14px 0 6px;font-weight:700}
-.steps{list-style:none;margin:0;padding:0;counter-reset:s}
-.steps li{position:relative;padding:4px 0 4px 32px;counter-increment:s}
-.steps li::before{content:counter(s);position:absolute;left:0;top:5px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;color:#fff;background:var(--c)}
-.steps.loop li.lend::after{content:"↻ 다시 처음으로";display:block;font-size:12px;color:var(--sub)}
-.links{list-style:none;margin:0;padding:0;font-size:13.5px}
-.links li{padding:6px 0;border-top:1px solid var(--rule)}
-.links li:first-child{border-top:0}
-.links b{font-weight:700}
-.links .c{font-size:11.5px;color:var(--sub);display:block}
-.links button{font:inherit;font-size:13.5px;background:none;border:0;padding:0;color:var(--ink);text-decoration:underline;cursor:pointer}
-.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:13.5px;margin:14px 0}
-.kv dt{color:var(--sub)} .kv dd{margin:0;min-width:0;overflow-wrap:anywhere}
-.go{display:flex;gap:8px;flex-wrap:wrap}
-.go a,.go span{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:12px;font-weight:700;text-decoration:none}
-.go a{background:var(--ink);color:var(--paper)}
-.go span{border:1.5px dashed var(--rule);color:var(--sub);font-weight:500}
-.legend{display:flex;gap:18px;flex-wrap:wrap;margin:14px 2px 0;font-size:13px;color:var(--sub);align-items:center}
-.legend svg{vertical-align:middle;margin-right:6px}
-.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
-.rules div{background:var(--card);border:1px solid var(--rule);border-radius:18px;padding:14px 16px}
-.rules b{font-family:var(--f-display);font-weight:400;font-size:18px;display:block;margin-bottom:4px}
-.rules p,.rules .rl{margin:0;color:var(--sub);font-size:13.5px} .rules .rl{padding-left:1.1em} .rules .rl li{margin:2px 0}
-.cast{margin-top:26px}
-.cast h2{font-family:var(--f-display);font-weight:400;font-size:26px;margin:0 0 12px}
-.cast-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
-.cast figure{margin:0;display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--rule);border-radius:18px;padding:10px 14px}
-.cast img{width:64px;height:64px;object-fit:contain;flex:none}
-.cast figcaption{min-width:0}
-.cast b{font-family:var(--f-display);font-weight:400;font-size:18px} .cast small{color:var(--sub);font-size:12px;margin-left:6px}
-.cast span{display:block;font-size:13.5px;color:var(--ink);word-break:keep-all;overflow-wrap:anywhere} .rules .rl li,.proto{word-break:keep-all}
-.hero-cast{display:flex;align-items:flex-end;gap:2px;margin-top:10px}
-.hero-cast img{width:58px;height:58px;object-fit:contain}
-.cards .lp img{width:34px;height:34px;object-fit:contain;vertical-align:middle;margin-right:6px}
-.cards{display:none}
-.proto{margin-top:20px;font-size:12px;color:var(--sub)}
-
-/* 데이터 흐름(큰 항로 네 단계 × 담임 · 학생 · 탐험대 · 프로젝트 · 담당 교사) — 2026-11-23 */
-.flow{margin-top:26px}
-.flow h2{font-family:var(--f-display);font-weight:400;font-size:26px;margin:0 0 4px}
-.flow .fsub{margin:0 0 12px;color:var(--sub);max-width:72ch}
-.flowbox{background:var(--card);border:1px solid var(--rule);border-radius:18px;padding:14px 10px;overflow-x:auto}
-.flowbox svg{display:block;width:100%;min-width:660px;max-width:1000px;margin:0 auto}
-.sparks .sg{filter:url(#fglow);fill-opacity:.85} .sparks .a{fill:var(--sys)} .sparks .g{fill:var(--big)} .sparks .sc{fill:#fff} .sparks .st1{fill-opacity:.7} .sparks .st2{fill-opacity:.4} 
-@media (prefers-reduced-motion: reduce){ .sparks{display:none} }
-.fswipe{display:none;margin:0 0 6px;font-size:13px;color:var(--sub);text-align:center}
-@media (max-width:700px){.fswipe{display:block}}
-.fl-h{font:400 17px var(--f-display);fill:var(--ink)} .fl-t{font:700 14px var(--f-body);fill:var(--ink)} .fl-s{font:400 12px var(--f-body);fill:var(--sub)}
-.fl-l{font:700 14px var(--f-body);fill:var(--ink)} .fl-l.e{fill:var(--stu)} .fl-l.g{fill:var(--tea)}
-.fb rect{stroke-width:1.2} .fb.p rect{fill:var(--card);stroke:var(--big)} .fb.e rect{fill:var(--stu-bg);stroke:var(--stu)} .fb.g rect{fill:var(--tea-bg);stroke:var(--tea)} .fb.x rect{fill:var(--ai-card);stroke:var(--ai);stroke-width:1.4} .fb.x .fl-t{fill:var(--ai-ink)} .fb.x .fl-s{fill:var(--ai-sub)}
-.fa{stroke:var(--sys);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round} .fa.new{stroke-width:3.4} .fg{stroke:var(--big);stroke-width:2.6;stroke-dasharray:0.01 5.6;stroke-linecap:round;stroke-linejoin:round;fill:none} .flane{stroke:var(--rule);stroke-width:1} .flayer{fill:var(--ai-bg);stroke:var(--ai);stroke-width:1.6} .fhead{stroke:var(--sub);stroke-width:1;fill:none}
-
-/* 지도 = 데이터 파이프라인 그림(2026-11-23 PD "이 그림이 제일 좋네요. 이걸 기반으로 지도 다시") */
-.maphead{margin:18px 0 10px} .maphead h2{font-family:var(--f-display);font-weight:400;font-size:26px;margin:0} .maphead p{margin:2px 0 0;color:var(--sub)}
-.mapbox{background:var(--card);border:1px solid var(--rule);border-radius:22px;padding:14px 10px;overflow-x:auto}
-.mapbox .pmap{display:block;width:100%;min-width:820px;height:auto}
-.pbox,.hit{cursor:pointer} .pbox:hover rect,.pbox:focus rect{stroke-width:2.4} .pbox.sel rect{stroke-width:3.2} .pbox:focus,.hit:focus{outline:none}
-.hit{fill:transparent} .hit:hover,.hit.sel{fill:rgba(10,166,209,.12)}
-.others{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:12px} .others b{font-family:var(--f-display);font-weight:400;font-size:17px;margin-right:4px}
-.others button{border:1px solid var(--rule);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 14px;min-height:40px;font:500 14px var(--f-body);cursor:pointer}
-.others button:hover{border-color:var(--big)}
-
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#111318;--surface:#1a1d24;--ink:#eef0f4;--sub:#a7adb9;--line:#2a2e38;--soft:#22262f;--accent:#9a8cff;--hl:#5a4a12;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#111318;--surface:#1a1d24;--ink:#eef0f4;--sub:#a7adb9;--line:#2a2e38;--soft:#22262f;--accent:#9a8cff;--hl:#5a4a12;color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:40px 56px}
+.ph{margin:0 0 22px}
+.eyebrow{display:inline-block;font:700 13px var(--f-body);letter-spacing:.02em;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent);padding:5px 12px;border-radius:999px;margin-bottom:12px}
+.ph h1{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,3.4vw,40px);line-height:1.22;margin:0;text-wrap:balance}
+.ph h1 em{font-style:normal;background:linear-gradient(transparent 60%,var(--hl) 0)}
+/* 그림 카드(그림 색은 밝은 판으로 고정) */
+.mapbox{--card:#ffffff;--paper:#f3f4f7;--ink:#1d2129;--sub:#5b6270;--rule:#e3e6eb;--stu:#d63a50;--stu-bg:#fde8e6;--tea:#13865a;--tea-bg:#e4f1e3;--sys:#5443c6;--big:#d98a00;--ai:#0aa6d1;--ai-bg:#dff6fd;--ai-card:#ffffff;--ai-ink:#06627d;--ai-sub:#2f6273;
+  background:#fff;color:#1d2129;border:1px solid var(--line);border-radius:24px;padding:16px 16px 10px;box-shadow:0 1px 2px rgba(16,24,40,.04),0 8px 28px rgba(16,24,40,.06);overflow-x:auto}
+.sparks .sg{filter:url(#fglow);fill-opacity:.85}
+.sparks .a{fill:var(--sys)}
+.sparks .g{fill:var(--big)}
+.sparks .sc{fill:#fff}
+.sparks .st1{fill-opacity:.7}
+.sparks .st2{fill-opacity:.4}
+.sparks{display:none}
+.fl-h{font:400 17px var(--f-display);fill:var(--ink)}
+.fl-t{font:700 14px var(--f-body);fill:var(--ink)}
+.fl-s{font:400 12px var(--f-body);fill:var(--sub)}
+.fl-l{font:700 14px var(--f-body);fill:var(--ink)}
+.fl-l.e{fill:var(--stu)}
+.fl-l.g{fill:var(--tea)}
+.fb rect{stroke-width:1.2}
+.fb.p rect{fill:var(--card);stroke:var(--big)}
+.fb.e rect{fill:var(--stu-bg);stroke:var(--stu)}
+.fb.g rect{fill:var(--tea-bg);stroke:var(--tea)}
+.fb.x rect{fill:var(--ai-card);stroke:var(--ai);stroke-width:1.4}
+.fb.x .fl-t{fill:var(--ai-ink)}
+.fb.x .fl-s{fill:var(--ai-sub)}
+.fa{stroke:var(--sys);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.fa.new{stroke-width:3.4}
+.fg{stroke:var(--big);stroke-width:2.6;stroke-dasharray:0.01 5.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.flane{stroke:var(--rule);stroke-width:1}
+.flayer{fill:var(--ai-bg);stroke:var(--ai);stroke-width:1.6}
+.fhead{stroke:var(--sub);stroke-width:1;fill:none}
 /* 흐름 보기(2026-11-23 3-way: Codex gpt-6.2-astra · Gemini gemini-4-neon-high · 총괄) — 멈춘 채 시작, 누르면 일곱 차례, 한 바퀴 뒤 멈춤 */
 .playbar{position:sticky;left:0;top:0;z-index:2;display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 10px;padding:10px 12px;border-radius:16px;background:var(--paper);border:1px solid var(--rule)}
 .pl-main{border:0;border-radius:999px;padding:10px 18px;min-height:44px;background:var(--sys);color:#fff;font:700 15px var(--f-body);cursor:pointer}
@@ -190,52 +63,30 @@ body.v-te .zone.stu{opacity:.55}
 .pmap.playing .pbox:not(.on),.pmap.playing .arw:not(.on),.pmap.playing .alab:not(.on){opacity:.22}
 .pmap.playing .flayer,.pmap.playing .fb.x{opacity:.35}
 .pmap.playing .pbox.on rect{stroke-width:3}
-.pmap.playing .fa.arw.on{stroke-width:2.6} .pmap.playing .fg.arw.on{stroke-width:3.2}
-.pmap .bridge{stroke:var(--card);stroke-width:8;fill:none} .fb.n rect{fill:var(--card);stroke:var(--sub);stroke-dasharray:4 3} .pmap.playing .bridge{opacity:1}
+.pmap.playing .fa.arw.on{stroke-width:2.6}
+.pmap.playing .fg.arw.on{stroke-width:3.2}
+.pmap .bridge{stroke:var(--card);stroke-width:8;fill:none}
+.fb.n rect{fill:var(--card);stroke:var(--sub);stroke-dasharray:4 3}
+.pmap.playing .bridge{opacity:1}
 .pmap .sparks path{fill:none;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
-.pmap .sparks .pipe{stroke-width:9;opacity:.26} .pmap .sparks .pipe.a{stroke:var(--sys)} .pmap .sparks .pipe.g{stroke:var(--big)}
+.pmap .sparks .pipe{stroke-width:9;opacity:.26}
+.pmap .sparks .pipe.a{stroke:var(--sys)}
+.pmap .sparks .pipe.g{stroke:var(--big)}
 .pmap .sparks .run{stroke:#fff;stroke-width:2.4;stroke-dasharray:2.5 11;opacity:0;transition:opacity .6s ease}
 .pmap .sparks .run.go{opacity:.95;animation:pmflow .75s linear infinite}
+.mapbox .pmap{display:block;width:100%;min-width:820px;height:auto}
+.playbar{border:0;background:var(--paper);margin:0 0 6px}
 @keyframes pmflow{from{stroke-dashoffset:13.5}to{stroke-dashoffset:0}}
-@media (max-width:1000px){ .board{grid-template-columns:1fr} .panel{position:static} }
-@media (max-width:680px){
-  .hero{grid-template-columns:1fr} .login{align-items:stretch} .gbtn{justify-content:center}
-  .cards{display:block} .rules{grid-template-columns:1fr} .who-l{display:none}
-}
-/* 휴대폰 카드 */
-.big-m{background:var(--card);border:2px solid var(--big);border-radius:18px;padding:10px 14px;margin-bottom:12px;font-family:var(--f-display);font-size:17px;text-align:center}
-.big-m span{color:var(--big)}
-.cards .z{border-radius:20px;padding:14px;margin-bottom:12px;border:2px solid var(--c);background:var(--bgc)}
-.cards h3{font-family:var(--f-display);font-weight:400;font-size:21px;margin:0;color:var(--c)}
-.cards .zs{font-size:13px;color:var(--sub);margin:0 0 4px}
-.cards .lp{display:block;width:100%;text-align:left;font:inherit;background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:10px 12px;margin-top:10px;color:var(--ink);cursor:pointer}
-.cards .lp b{font-family:var(--f-display);font-weight:400;font-size:17px}
-.cards .lp small{color:var(--sub);font-size:12px;margin-left:6px}
-.cards .lp ol{margin:6px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:4px 0;font-size:13px}
-.cards .lp li::after{content:"→";color:var(--c);margin:0 6px}
-.cards .lp li:last-child::after{content:"";}
-.cards .lp li.link{font-weight:700;text-decoration:underline;text-decoration-color:var(--c);text-underline-offset:3px}
-
-.starband{position:relative;margin:-4px 0 12px;border-radius:14px;overflow:hidden;height:92px}
-.starband img{width:100%;height:100%;object-fit:cover;display:block}
-.starband span{position:absolute;left:12px;bottom:9px;color:#fff8e6;font-family:var(--f-display);font-size:16px;text-shadow:0 1px 4px #0008}
-
-.pipe-hero{padding:28px 0 6px} .pipe-hero h1{margin:0 0 10px} .pipe-hero p{margin:0;max-width:760px;color:var(--sub)}
-.pipe-wrap .mapbox{margin-top:8px}
-
-/* 흐름 보기: 재생 막대 + 그림 + 범례가 한 화면에(넓은 화면) */
 @media (min-width:900px){
   .mapbox .pmap{width:auto;min-width:0;max-width:100%;height:calc(100vh - 150px);max-height:calc((100vw - 96px) * .7326);min-height:420px;margin:0 auto}
 }
+@media (prefers-reduced-motion: reduce){.mapbox .sparks .run{animation:none}}
 </style>
 
 </head>
 <body>
-<div class="wrap pipe-wrap">
-  <section class="pipe-hero"><h1>나를 알고, 꿈을 찾고, 꿈을 향해 나아가며<br><em>더 나은 내가 되는</em> 학교</h1>
-    <p>학생과 담임 교사 · 프로그램 담당 교사 · 생기부 담당 교사가 두근두근 탐험대와 두근두근 프로젝트로 기록을 주고받습니다. 두근두근 스튜디오와 모의 면접 · 구술평가는 AI 기반 학습 · 평가 시스템으로 따로 사용합니다.</p>
-  </section>
-  <div class="maphead"><h2>두근두근 시스템 - 데이터 파이프라인</h2></div>
+<div class="wrap">
+  <header class="ph"><span class="eyebrow">두근두근 시스템 · 데이터 파이프라인</span><h1>나를 알고, 꿈을 찾고, 꿈을 향해 나아가며<br><em>더 나은 내가 되는</em> 학교</h1></header>
   <div class="mapbox"><div class="playbar" id="playbar"><button type="button" class="pl-main" id="pl-play">▶ 흐름 보기</button><p class="pl-cap" id="pl-cap" aria-live="polite">버튼을 누르면 한 학기 기록이 어떻게 오가는지 여덟 차례로 보여 줍니다.</p><div class="pl-ctl"><button type="button" id="pl-prev" aria-label="이전" disabled>◀</button><span id="pl-n">0 / 8</span><button type="button" id="pl-next" aria-label="다음">▶</button><button type="button" id="pl-all" disabled>전체 보기</button></div></div><svg class="pmap" viewBox="0 0 860 630" role="img" aria-labelledby="pmT pmD"><title id="pmT">두근두근 시스템 - 데이터 파이프라인</title><desc id="pmD">가로는 나를 알고 · 꿈을 찾고 · 꿈을 향해 나아가고 · 더 나은 내가 되기 · 기록과 개선, 세로는 학생 · 담임 교사 · 생기부 담당 교사 · 프로그램 담당 교사. 칸 색은 쓰는 앱(빨강 탐험대, 초록 프로젝트, 회색 나이스), 보라 실선은 자동 연결, 노란 점선은 사람이 확인해야 넘어가는 연결.</desc><defs><filter id="fglow" x="-2" y="-2" width="5" height="5"><feGaussianBlur stdDeviation="3.4"/></filter><marker id="farr" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M1.5 1.5 L10.5 6 L1.5 10.5 L4 6 Z" fill="context-stroke" stroke="context-stroke" stroke-width="1" stroke-linejoin="round"/></marker></defs><text class="fl-h" x="170" y="28" text-anchor="middle" dominant-baseline="central">나를 알고</text><text class="fl-h" x="326" y="28" text-anchor="middle" dominant-baseline="central">꿈을 찾고</text><text class="fl-h" x="482" y="28" text-anchor="middle" dominant-baseline="central">꿈을 향해 나아가고</text><text class="fl-h" x="638" y="28" text-anchor="middle" dominant-baseline="central">더 나은 내가 되기</text><text class="fl-h" x="784" y="28" text-anchor="middle" dominant-baseline="central">기록 · 개선</text><line class="fhead" x1="216" y1="28" x2="270" y2="28" marker-end="url(#farr)"/><line class="fhead" x1="372" y1="28" x2="404" y2="28" marker-end="url(#farr)"/><line class="flane" x1="12" y1="150" x2="848" y2="150"/><line class="flane" x1="12" y1="230" x2="848" y2="230"/><line class="flane" x1="12" y1="310" x2="848" y2="310"/><text class="fl-l" x="52" y="110" text-anchor="middle" dominant-baseline="central">학생</text><text class="fl-l" x="52" y="180" text-anchor="middle" dominant-baseline="central">담임</text><text class="fl-l" x="52" y="200" text-anchor="middle" dominant-baseline="central">교사</text><text class="fl-l" x="52" y="260" text-anchor="middle" dominant-baseline="central">생기부</text><text class="fl-l" x="52" y="280" text-anchor="middle" dominant-baseline="central">담당 교사</text><text class="fl-l" x="52" y="340" text-anchor="middle" dominant-baseline="central">프로그램</text><text class="fl-l" x="52" y="360" text-anchor="middle" dominant-baseline="central">담당 교사</text><g data-k="S1" class="fb pbox e"><rect x="100" y="82" width="140" height="56" rx="10"/><text class="fl-t" x="170.0" y="100.0" text-anchor="middle" dominant-baseline="central">활동 문장 쓰기</text><text class="fl-s" x="170.0" y="120.0" text-anchor="middle" dominant-baseline="central">좋아하는 · 잘하는 일</text></g><g data-k="S2" class="fb pbox e"><rect x="256" y="82" width="140" height="56" rx="10"/><text class="fl-t" x="326.0" y="100.0" text-anchor="middle" dominant-baseline="central">꿈의 별자리</text><text class="fl-s" x="326.0" y="120.0" text-anchor="middle" dominant-baseline="central">추천 직업 중 선택</text></g><g data-k="S3" class="fb pbox e"><rect x="412" y="82" width="140" height="56" rx="10"/><text class="fl-t" x="482.0" y="100.0" text-anchor="middle" dominant-baseline="central">해 볼 일 고르기</text><text class="fl-s" x="482.0" y="120.0" text-anchor="middle" dominant-baseline="central">모집 중 바로 신청</text></g><g data-k="S4" class="fb pbox e"><rect x="568" y="82" width="140" height="56" rx="10"/><text class="fl-t" x="638.0" y="100.0" text-anchor="middle" dominant-baseline="central">내 활동 담기</text><text class="fl-s" x="638.0" y="120.0" text-anchor="middle" dominant-baseline="central">돌아보기 고쳐 쓰기</text></g><g data-k="T2" class="fb pbox e"><rect x="250" y="155" width="152" height="70" rx="10"/><text class="fl-t" x="326.0" y="170.0" text-anchor="middle" dominant-baseline="central">학생 상담 및 활동 권유</text><text class="fl-s" x="326.0" y="191.0" text-anchor="middle" dominant-baseline="central">과목 선택 상담 포함</text><text class="fl-s" x="326.0" y="209.0" text-anchor="middle" dominant-baseline="central">학생 수락 시 반영</text></g><g data-k="T4" class="fb pbox g"><rect x="568" y="162" width="140" height="56" rx="10"/><text class="fl-t" x="638.0" y="180.0" text-anchor="middle" dominant-baseline="central">학급 생기부 작성</text><text class="fl-s" x="638.0" y="200.0" text-anchor="middle" dominant-baseline="central">학생 상담 내용 확정</text></g><g data-k="TN" class="fb pbox n"><rect x="724" y="162" width="120" height="56" rx="10"/><text class="fl-t" x="784.0" y="180.0" text-anchor="middle" dominant-baseline="central">나이스 입력</text><text class="fl-s" x="784.0" y="200.0" text-anchor="middle" dominant-baseline="central">교사가 직접</text></g><g data-k="R4" class="fb pbox g"><rect x="568" y="242" width="140" height="56" rx="10"/><text class="fl-t" x="638.0" y="260.0" text-anchor="middle" dominant-baseline="central">생기부 종합 및 배포</text><text class="fl-s" x="638.0" y="280.0" text-anchor="middle" dominant-baseline="central">확인한 사실로 작성</text></g><g data-k="P1" class="fb pbox g"><rect x="100" y="322" width="140" height="56" rx="10"/><text class="fl-t" x="170.0" y="340.0" text-anchor="middle" dominant-baseline="central">프로그램 설계</text><text class="fl-s" x="170.0" y="360.0" text-anchor="middle" dominant-baseline="central">AI 초안 · 교사 결정</text></g><g data-k="P3" class="fb pbox g"><rect x="412" y="322" width="140" height="56" rx="10"/><text class="fl-t" x="482.0" y="340.0" text-anchor="middle" dominant-baseline="central">선발 · 운영</text><text class="fl-s" x="482.0" y="360.0" text-anchor="middle" dominant-baseline="central">선착순 · 추첨 · 출석</text></g><g data-k="P4" class="fb pbox g"><rect x="568" y="322" width="140" height="56" rx="10"/><text class="fl-t" x="638.0" y="340.0" text-anchor="middle" dominant-baseline="central">실제 참여 확인</text><text class="fl-s" x="638.0" y="360.0" text-anchor="middle" dominant-baseline="central">결과 보고 · 학생 후기</text></g><g data-k="PI" class="fb pbox g"><rect x="724" y="322" width="120" height="56" rx="10"/><text class="fl-t" x="784.0" y="340.0" text-anchor="middle" dominant-baseline="central">프로그램 개선</text><text class="fl-s" x="784.0" y="360.0" text-anchor="middle" dominant-baseline="central">개선안 교사 승인</text></g><path class="fa arw" data-k="k1" d="M240 110 L252 110" marker-end="url(#farr)"/><path class="fa arw" data-k="k2" d="M326 140 L326 153" marker-end="url(#farr)"/><path class="fg arw" data-k="k3" d="M396 110 L408 110" marker-end="url(#farr)"/><path class="fg arw" data-k="k4" d="M402 190 L413 190 Q424 190 424 178 L424 141" marker-end="url(#farr)"/><path class="fa arw" data-k="k5" d="M170 321 L170 202 Q170 190 182 190 L247 190" marker-end="url(#farr)"/><path class="fa arw" data-k="k6" d="M240 350 L408 350" marker-end="url(#farr)"/><path class="fg arw" data-k="k7" d="M552 350 L564 350" marker-end="url(#farr)"/><path class="fa arw" data-k="k8" d="M638 321 L638 300" marker-end="url(#farr)"/><path class="fa arw" data-k="k9" d="M638 241 L638 221" marker-end="url(#farr)"/><path class="fa arw" data-k="k10" d="M470 140 L470 320" marker-end="url(#farr)"/><path class="fa arw" data-k="k11" d="M494 321 L494 140" marker-end="url(#farr)"/><path class="fa arw" data-k="k12" d="M568 336 L564 336 Q560 336 560 324 L560 213 A7 7 0 0 0 560 199 L560 122 Q560 110 563 110 L566 110" marker-end="url(#farr)"/><path class="fg arw" data-k="k15" d="M708 190 L720 190" marker-end="url(#farr)"/><path class="fa arw" data-k="k16" d="M708 350 L720 350" marker-end="url(#farr)"/><path class="fg arw" data-k="k17" d="M784 379 L784 388.5 Q784 398 772 398 L182 398 Q170 398 170 389.5 L170 381" marker-end="url(#farr)"/><path class="fg arw" data-k="k14" d="M404 206 L463 206 A7 7 0 0 1 477 206 L487 206 A7 7 0 0 1 501 206 L565 206" marker-end="url(#farr)"/><path class="fg arw" data-k="k13" d="M638 82 L638 72 Q638 62 624 62 L184 62 Q170 62 170 71 L170 80" marker-end="url(#farr)"/><text class="fl-s alab" data-k="k13" x="404" y="50" text-anchor="middle" dominant-baseline="central">↻ 담은 활동은 다음 학기 기록에 반영</text><text class="fl-s alab" data-k="k10" x="464" y="252" text-anchor="end" dominant-baseline="central">신청</text><text class="fl-s alab" data-k="k11" x="500" y="252" dominant-baseline="central">모집 · 결과</text><text class="fl-s alab" data-k="k5" x="178" y="256" dominant-baseline="central">프로그램 정보</text><text class="fl-s alab" data-k="k6" x="324" y="340" text-anchor="middle" dominant-baseline="central">개설 · 모집</text><text class="fl-s alab" data-k="k12" x="554" y="290" text-anchor="end" dominant-baseline="central">참여 기록</text><text class="fl-s alab" data-k="k2" x="334" y="146" dominant-baseline="central">별자리 열람</text><text class="fl-s alab" data-k="k14" x="532" y="197" text-anchor="middle" dominant-baseline="central">상담 내용</text><text class="fl-s alab" data-k="k17" x="477" y="410" text-anchor="middle" dominant-baseline="central">다음 해 교육계획</text><rect class="flayer" x="12" y="426" width="836" height="110" rx="14"/><g class="fb pbox x"><rect x="32" y="440" width="390" height="82" rx="10"/><text class="fl-t" x="227.0" y="461.0" text-anchor="middle" dominant-baseline="central">AI 기반 학습 시스템</text><text class="fl-s" x="227.0" y="482.0" text-anchor="middle" dominant-baseline="central">두근두근 스튜디오</text><text class="fl-s" x="227.0" y="500.0" text-anchor="middle" dominant-baseline="central">쉽고 재미있는 학습 영상 제작 시스템</text></g><g class="fb x"><rect x="438" y="440" width="390" height="82" rx="10"/><text class="fl-t" x="633.0" y="461.0" text-anchor="middle" dominant-baseline="central">AI 기반 평가 시스템</text><text class="fl-s" x="633.0" y="482.0" text-anchor="middle" dominant-baseline="central">AI · 데이터 기반 음성 대입 모의 면접</text><text class="fl-s" x="633.0" y="500.0" text-anchor="middle" dominant-baseline="central">AI · 데이터 기반 구술 평가</text></g><g class="sparks" id="sparks" aria-hidden="true"></g><line class="fa" x1="60" y1="566" x2="100" y2="566" marker-end="url(#farr)"/><text class="fl-s" x="108" y="566" dominant-baseline="central">자동 연결</text><line class="fg" x1="230" y1="566" x2="270" y2="566" marker-end="url(#farr)"/><text class="fl-s" x="278" y="566" dominant-baseline="central">사람 확인</text><g class="fb e"><rect x="60" y="592" width="16" height="16" rx="4"/></g><text class="fl-s" x="84" y="600" dominant-baseline="central">두근두근 탐험대</text><g class="fb g"><rect x="230" y="592" width="16" height="16" rx="4"/></g><text class="fl-s" x="254" y="600" dominant-baseline="central">두근두근 프로젝트</text><g class="fb n"><rect x="410" y="592" width="16" height="16" rx="4"/></g><text class="fl-s" x="434" y="600" dominant-baseline="central">나이스(학교 기록)</text><g class="fb x"><rect x="580" y="592" width="16" height="16" rx="4"/></g><text class="fl-s" x="604" y="600" dominant-baseline="central">AI 기반 학습 · 평가</text></svg></div>
 </div>
 <script>
