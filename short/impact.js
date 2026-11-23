@@ -31,7 +31,8 @@
     else if (k === "f" || k === "F") { if (!document.fullscreenElement) document.documentElement.requestFullscreen && document.documentElement.requestFullscreen().catch(function () {}); else document.exitFullscreen(); }
   });
   addEventListener("message", function (e) { if (e.data && e.data.deckKey) dispatchEvent(new KeyboardEvent("keydown", { key: e.data.deckKey })); });
-  document.getElementById("viewport").addEventListener("click", function (e) { if (e.target.closest("iframe,button")) return; (e.clientX < innerWidth * 0.2 ? prev : next)(); });
+  document.getElementById("ivPlay").addEventListener("click", function (e) { e.stopPropagation(); var v = document.getElementById("ivVid"); v.currentTime = 0; v.play().then(function () { e.target.hidden = true; }).catch(function () {}); });
+  document.getElementById("viewport").addEventListener("click", function (e) { if (e.target.closest("iframe,button,video")) return; (e.clientX < innerWidth * 0.2 ? prev : next)(); });
 
   // ---- 6장: 편제표(실제 2026 선택 묶음) + 국어국문학과 권장 과목 필름 ----
   function buildTT(d) {
@@ -99,6 +100,9 @@
   STEP[6] = function (s, k) {
     s.querySelector(".no").textContent = k ? "0" + k : "";
     if (k === 1) nebula(); else cancelAnimationFrame(nebRaf);
+    var v = document.getElementById("ivVid"), pb = document.getElementById("ivPlay");
+    if (k === 3) { v.currentTime = 0; var pr = v.play(); if (pr && pr.then) pr.then(function () { pb.hidden = true; }).catch(function () { pb.hidden = false; }); }
+    else { v.pause(); pb.hidden = true; }
     var f = document.getElementById("starFrame");
     if (k === 2) f.src = f.dataset.src + "&t=" + Date.now(); else if (f.src) f.removeAttribute("src");
   };

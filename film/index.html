@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>두근두근 스튜디오 극장판</title>
+<style>
+:root{--bg:#0f1330;--fg:#f3f0ff;--sub:#b9b6d8;--acc:#ffd23f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Pretendard,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px))}
+h1{font-size:clamp(20px,3vw,32px);margin:0 0 4px;letter-spacing:-.01em}
+p{margin:0 0 18px;color:var(--sub);font-size:15px}
+video{width:min(1280px,100%);aspect-ratio:16/9;border-radius:14px;background:#000;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+small{margin-top:14px;color:var(--sub);font-size:13px}
+</style>
+</head>
+<body>
+<h1>두근두근 당곡 <span style="color:var(--acc)">· 두근두근 스튜디오 극장판</span></h1>
+<p>2분 26초 · 소리를 켜고 보세요</p>
+<video src="film.mp4" poster="poster.jpg" controls playsinline preload="metadata"></video>
+<small>화면의 학생과 자료는 모두 모의 데이터입니다. 면접 화면은 실제 앱 녹화(모의 학생 · 합성 목소리)입니다.</small>
+</body>
+</html>
