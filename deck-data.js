@@ -161,13 +161,13 @@ window.MENUS = {
 "k5",
 "k6"
 ],
-"label": "이 단계",
-"sub": "학생 · 프로그램 담당 교사",
+"label": "한눈에 보기",
+"sub": "학생 활동 적기 · 프로그램 설계",
 "mong": "gori"
 },
 {
-"label": "왜 여기서 출발하나",
-"sub": "나를 아는 데서",
+"label": "진로 탐색의 출발",
+"sub": "직업 이름보다 나부터",
 "mong": "dugeun",
 "type": "points",
 "head": "학생은 진로 탐색을 직업 이름보다 나를 아는 데서 시작",
@@ -242,8 +242,8 @@ window.MENUS = {
 "k4",
 "k3"
 ],
-"label": "이 단계",
-"sub": "학생 · 담임 교사",
+"label": "한눈에 보기",
+"sub": "별자리 그리기 · 담임 상담",
 "mong": "gori"
 },
 {
@@ -256,8 +256,8 @@ window.MENUS = {
 "head": "학생은 ①에서 적은 활동을 직업마다 ♥ Love · ★ Well 가지로 이음"
 },
 {
-"label": "쓸 직업이 없으면",
-"sub": "AI 추천 · 직업 성운",
+"label": "AI 직업 추천",
+"sub": "직업 성운 · 923개 비교",
 "mong": "dugeun",
 "type": "embed3d",
 "head": "학생은 쓸 직업이 떠오르지 않으면 교내 AI 추천을 활용 · 서윤의 Love & Well과 직업 923개를 비교",
@@ -268,7 +268,7 @@ window.MENUS = {
 "sub": "직접 눌러 보기",
 "mong": "dugeun",
 "type": "iframe",
-"src": "parts/star/star.html?v=now",
+"src": "parts/star/star.html?v=now&anim=1",
 "head": "학생은 고른 직업까지 가는 길 세 갈래와 이번 학기 실천 활동을 별로 보고, 별을 눌러 확인",
 "tag": "학생"
 },
@@ -283,7 +283,7 @@ window.MENUS = {
 },
 {
 "label": "과목 선택 상담",
-"sub": "2학년 · 한 장",
+"sub": "2학년 · 한 장에 정리",
 "mong": "doran",
 "type": "doc",
 "img": "assets/shot/counsel.jpg",
@@ -322,13 +322,13 @@ window.MENUS = {
 "k11",
 "k6"
 ],
-"label": "이 단계",
-"sub": "학생 · 프로그램 담당 교사",
+"label": "한눈에 보기",
+"sub": "실천 활동 신청 · 선발 운영",
 "mong": "gori"
 },
 {
 "label": "실천 활동 고르기",
-"sub": "이번 학기",
+"sub": "이번 학기 · 권유 수락",
 "mong": "dugeun",
 "type": "shot",
 "img": "assets/shot/try.jpg",
@@ -388,8 +388,8 @@ window.MENUS = {
 "k12",
 "k14"
 ],
-"label": "이 단계",
-"sub": "네 사람 모두",
+"label": "한눈에 보기",
+"sub": "참여 확인 · 내 활동 · 생기부",
 "mong": "gori"
 },
 {
@@ -402,8 +402,8 @@ window.MENUS = {
 "head": "프로그램 담당 교사는 프로그램이 끝나면 실제 참여를 확인 · 확인한 참여만 다음으로 전달"
 },
 {
-"label": "내 활동에 도착",
-"sub": "학생이 담기",
+"label": "‘내 활동’에 담기",
+"sub": "해 본 일을 내 말로 적기",
 "mong": "dugeun",
 "type": "shot",
 "img": "assets/shot/add.jpg",
@@ -427,7 +427,7 @@ window.MENUS = {
 },
 {
 "label": "생기부 종합 및 배포",
-"sub": "확인한 사실로",
+"sub": "확인된 참여 기록으로",
 "mong": "ttobak",
 "type": "shot",
 "img": "assets/m/n9.jpg",
@@ -447,7 +447,7 @@ window.MENUS = {
 ]
 ],
 "label": "학급 생기부 작성",
-"sub": "상담 내용 확정",
+"sub": "배포 기록 · 상담 내용 반영",
 "head": "담임 교사는 배포받은 내용과 ②의 상담 내용을 함께 확인해 학급 생기부 작성",
 "tag": "담임 교사",
 "mong": "doran"
@@ -470,8 +470,8 @@ window.MENUS = {
 "k16",
 "k17"
 ],
-"label": "이 단계",
-"sub": "담임 교사 · 프로그램 담당 교사",
+"label": "한눈에 보기",
+"sub": "나이스 입력 · 다음 해 반영",
 "mong": "gori"
 },
 {
@@ -542,8 +542,8 @@ window.MENUS = {
 "legend": "파이프라인과 따로 운영 · 학생 기록이 넘어가지 않음",
 "items": [
 {
-"label": "고민 → 영상",
-"sub": "필요한 수업 영상",
+"label": "수업 고민 → 영상",
+"sub": "필요한 내용 바로 제작",
 "mong": "chorong",
 "type": "studiostory",
 "head": "교과 교사는 학생에게 필요한 수업 영상을 고민하면 바로 교육 영상으로 제작",
@@ -573,8 +573,8 @@ window.MENUS = {
 "tag": "교과 교사"
 },
 {
-"label": "영상 보며 의견",
-"sub": "편 화면",
+"label": "영상에 의견 남기기",
+"sub": "AI 영상 보며 멈춘 곳에",
 "mong": "chorong",
 "type": "shot",
 "img": "assets/studio/a04_ep.jpg",
@@ -582,8 +582,8 @@ window.MENUS = {
 "tag": "교과 교사"
 },
 {
-"label": "판 확인",
-"sub": "유튜브 공개",
+"label": "교사 검토 · 공개",
+"sub": "확인한 영상만 유튜브에",
 "mong": "chorong",
 "type": "shot",
 "img": "assets/studio/a10_approve.jpg",
@@ -591,7 +591,7 @@ window.MENUS = {
 "tag": "교과 교사"
 },
 {
-"label": "만든 영상",
+"label": "수업 영상 모음",
 "sub": "두근두근러닝",
 "mong": "chorong",
 "type": "shot",

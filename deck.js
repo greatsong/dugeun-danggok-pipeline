@@ -134,6 +134,7 @@
         });
         void p.offsetWidth; p.classList.add("on");
         if (window.pipeFlow) p.querySelectorAll(".pipebox").forEach(window.pipeFlow);
+        p.querySelectorAll("iframe").forEach(function (f) { try { f.contentWindow.postMessage({ starAnim: 1 }, "*"); } catch (e) {} });
       }
     });
   }

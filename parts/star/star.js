@@ -159,11 +159,14 @@ function draw(S) {
     el("rect", { x: x - w / 2, y: ty, width: w, height: h, rx: h / 2, fill: "#2A1D00", stroke: "#FFD23F", "stroke-width": 2 }, g);
     el("text", { x, y: ty + h / 2 + fs * 0.36, "text-anchor": "middle", "font-size": fs, "font-weight": 900, fill: "#FFE27A", class: "lab" }, g, label);
   }
-  bigStar(el("g", {}, gN), G[0], G[1] - 6, 62, S.dream, 20);
-  bigStar(el("g", {}, gN), N[0], N[1] - 8, 30, "오늘의 나", 14);
+  const gDream = el("g", {}, gN), gMe = el("g", {}, gN);
+  bigStar(gDream, G[0], G[1] - 6, 62, S.dream, 20);
+  bigStar(gMe, N[0], N[1] - 8, 30, "오늘의 나", 14);
+  window.__star = { gDream, gMe, nodes: [...BIG, ...MID, ...LEAF], nodeG, lines, N, G, d, LEN };
+  if (new URLSearchParams(location.search).get("anim") && window.starAnim) requestAnimationFrame(window.starAnim);
   // 소개 카드 · 균형
   const card = document.getElementById("card");
-  let minimized = PHONE;   // 휴대폰: 처음엔 안내 카드를 접어 별자리를 가리지 않게
+  let minimized = PHONE || !!new URLSearchParams(location.search).get("anim");   // 휴대폰: 처음엔 안내 카드를 접어 별자리를 가리지 않게
   function toggleBtn() {
     const b = document.createElement("button");
     b.className = "tog";
