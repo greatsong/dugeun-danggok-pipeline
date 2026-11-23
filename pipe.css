@@ -1,0 +1,56 @@
+/* 파이프라인 그림(포털 그림과 같은 모양) */
+.pipebox{--card:#fffaf0;--ink:#2a2118;--sub:#5c4f40;--rule:#e2d4b8;--paper:#f6efe0;--stu:#d63a50;--stu-bg:#fbe4da;--tea:#13865a;--tea-bg:#e2eed0;--sys:#5443c6;--big:#d98a00;--ai:#0aa6d1;--ai-bg:#cdf3ff;--ai-card:#ffffff;--ai-ink:#06627d;--ai-sub:#2f6273;--f-display:'Jua','Pretendard',system-ui,sans-serif;--f-body:'Pretendard','Noto Sans KR',system-ui,sans-serif;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;background:var(--card);border:2px solid var(--rule);border-radius:28px;padding:10px 18px}
+.pipebox .sparks .sg{filter:url(#fglow);fill-opacity:.85}
+.pipebox .sparks .a{fill:var(--sys)}
+.pipebox .sparks .g{fill:var(--big)}
+.pipebox .sparks .sc{fill:#fff}
+.pipebox .sparks .st1{fill-opacity:.7}
+.pipebox .sparks .st2{fill-opacity:.4}
+.pipebox .sparks{display:none}
+.pipebox .fl-h{font:400 17px var(--f-display);fill:var(--ink)}
+.pipebox .fl-t{font:700 14px var(--f-body);fill:var(--ink)}
+.pipebox .fl-s{font:400 12px var(--f-body);fill:var(--sub)}
+.pipebox .fl-l{font:700 14px var(--f-body);fill:var(--ink)}
+.pipebox .fl-l.e{fill:var(--stu)}
+.pipebox .fl-l.g{fill:var(--tea)}
+.pipebox .fb rect{stroke-width:1.2}
+.pipebox .fb.p rect{fill:var(--card);stroke:var(--big)}
+.pipebox .fb.e rect{fill:var(--stu-bg);stroke:var(--stu)}
+.pipebox .fb.g rect{fill:var(--tea-bg);stroke:var(--tea)}
+.pipebox .fb.x rect{fill:var(--ai-card);stroke:var(--ai);stroke-width:1.4}
+.pipebox .fb.x .fl-t{fill:var(--ai-ink)}
+.pipebox .fb.x .fl-s{fill:var(--ai-sub)}
+.pipebox .fa{stroke:var(--sys);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pipebox .fa.new{stroke-width:3.4}
+.pipebox .fg{stroke:var(--big);stroke-width:2.6;stroke-dasharray:0.01 5.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.pipebox .flane{stroke:var(--rule);stroke-width:1}
+.pipebox .flayer{fill:var(--ai-bg);stroke:var(--ai);stroke-width:1.6}
+.pipebox .fhead{stroke:var(--sub);stroke-width:1;fill:none}
+.pipebox .pmap .pbox,.pipebox .pmap .arw,.pipebox .pmap .alab,.pipebox .pmap .flayer,.pipebox .pmap .fb.x,.pipebox .pmap .hit{transition:opacity .35s}
+.pipebox .pmap.playing .pbox:not(.on),.pipebox .pmap.playing .arw:not(.on),.pipebox .pmap.playing .alab:not(.on){opacity:.22}
+.pipebox .pmap.playing .flayer,.pipebox .pmap.playing .fb.x{opacity:.35}
+.pipebox .pmap.playing .pbox.on rect{stroke-width:3}
+.pipebox .pmap.playing .fa.arw.on{stroke-width:2.6}
+.pipebox .pmap.playing .fg.arw.on{stroke-width:3.2}
+.pipebox .pmap .bridge{stroke:var(--card);stroke-width:8;fill:none}
+.pipebox .fb.n rect{fill:var(--card);stroke:var(--sub);stroke-dasharray:4 3}
+.pipebox .pmap.playing .bridge{opacity:1}
+.pipebox .pmap .sparks path{fill:none;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.pipebox .pmap .sparks .pipe{stroke-width:9;opacity:.26}
+.pipebox .pmap .sparks .pipe.a{stroke:var(--sys)}
+.pipebox .pmap .sparks .pipe.g{stroke:var(--big)}
+.pipebox .pmap .sparks .run{stroke:#fff;stroke-width:2.4;stroke-dasharray:2.5 11;opacity:0;transition:opacity .6s ease}
+.pipebox .pmap .sparks .run.go{opacity:.95;animation:pmflow .75s linear infinite}
+.pipebox .pmap{display:block;height:100%;width:auto;max-width:100%;min-width:0}
+@keyframes pmflow{from{stroke-dashoffset:13.5}to{stroke-dashoffset:0}}
+.pipebox .fl-h{font-size:18px}
+/* 파이프라인 덱: 제목 한두 줄, 항목이 많은 장은 목록을 촘촘하게 */
+.slide[data-menu] .top h2{font-size:42px;line-height:1.25}
+.slide[data-menu] .mwrap{height:800px;margin-top:16px}
+#sPipe .mi,#sK1 .mi,#sK2 .mi,#sK4 .mi{padding:6px 14px;grid-template-columns:48px 1fr}
+#sPipe .mi img,#sK1 .mi img,#sK2 .mi img,#sK4 .mi img{height:40px;width:48px}
+#sPipe .mi b,#sK1 .mi b,#sK2 .mi b,#sK4 .mi b{font-size:21px}
+#sPipe .mi span,#sK1 .mi span,#sK2 .mi span,#sK4 .mi span{font-size:15px}
+#sPipe .mi .no,#sK1 .mi .no,#sK2 .mi .no,#sK4 .mi .no{width:22px;height:22px;font-size:13px;top:5px;left:6px}
+.slide[data-menu] .mlist{gap:8px}
+.slide[data-menu] .mlist .legend{font-size:16px;padding:10px 14px}
