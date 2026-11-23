@@ -43,7 +43,7 @@ function draw(S) {
   if (ME) {   // 학생 화면 용어(2026-11-23 임시 추천안)
     document.querySelector("header .n").textContent = "나를 발견하기 · 나와 맞는 직업 찾기 ·";
   }
-  const BIG = [["b0", "가는 길", "path"], ["b1", "★ 잘할 힘", "well"], ["b2", "♥ 좋아할 힘", "love"], ["b3", ME ? "내 활동 모음" : "포트폴리오", "port"]].map(([id, label, lane], i) => ({ id, label, lane, to: "dream", xy: at(0.83, (-1.5 + i) * 150) }));
+  const BIG = [["b0", "로드맵", "path"], ["b1", "★ 잘할 힘", "well"], ["b2", "♥ 좋아할 힘", "love"], ["b3", "포트폴리오", "port"]].map(([id, label, lane], i) => ({ id, label, lane, to: "dream", xy: at(0.83, (-1.5 + i) * 150) }));
   // 중간 별을 갈래 순서(가는 길 · 잘할 힘 · 좋아할 힘 · 포트폴리오)로 줄 세우기
   const order = S.mids.map((m, k) => k).sort((a, b) => LANES.indexOf(S.mids[a].lane) - LANES.indexOf(S.mids[b].lane) || a - b);
   const slot = {};

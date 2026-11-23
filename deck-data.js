@@ -269,7 +269,7 @@ window.MENUS = {
 "mong": "dugeun",
 "type": "iframe",
 "src": "parts/star/star.html?v=now&anim=1",
-"head": "학생은 고른 직업까지 가는 길 세 갈래와 이번 학기 실천 활동을 별로 보고, 별을 눌러 확인",
+"head": "학생은 고른 직업까지의 로드맵 세 갈래와 이번 학기 실천 활동을 별로 보고, 별을 눌러 확인",
 "tag": "학생"
 },
 {
